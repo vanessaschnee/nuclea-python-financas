@@ -41,5 +41,6 @@ while control:
         pass
     elif menu == '5':
         print("Obrigada por utilizar nosso programa.")
+        control = False
     else:
         print("Opção inválida, tente novamente.")
