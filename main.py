@@ -1,5 +1,4 @@
 control = True
-dic_client = {}
 list_client = []
 
 while control:
@@ -14,21 +13,16 @@ while control:
 
     if menu == 1:
         print("informe os dados do cliente:")
-        nome = input("Nome: ")
-        cpf = input("CPF: ")
-        rg = input("RG: ")
-        data_nascimento = input("Data de nascimento: ")
-        cep = input("CEP: ")
-        num_casa = int(input("Número casa: "))
+        client = {
+            "nome": input("Nome: "),
+            "cpf": input("CPF: "),
+            "rg": input("RG: "),
+            "data_nascimento": input("Data de nascimento: "),
+            "cep": input("CEP: "),
+            "num_casa": int(input("Número casa: ")),
+        }
 
-        dic_client = {'nome': nome,
-                      'cpf': cpf,
-                      'rg': rg,
-                      'data_nascimento': data_nascimento,
-                      'cep': cep,
-                      'numero_casa': num_casa}
-
-        list_client.append(dic_client)
+        list_client.append(client)
         print(list_client)
 
         return_menu = input("Deseja retornar ao menu principal [sim/nao]? ")
