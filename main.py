@@ -1,3 +1,6 @@
+from utils.funcoes_auxiliares import *
+from utils.valida_cpf import valida_cpf
+
 control = True
 list_client = []
 
@@ -14,24 +17,17 @@ while control:
     if menu == 1:
         print("informe os dados do cliente:")
         client = {
-            "nome": input("Nome: "),
-            "cpf": input("CPF: "),
+            "nome": format_text(input("Nome: ")),
+            "cpf": valida_cpf(input("CPF: ").replace(".","").replace("-","")),
             "rg": input("RG: "),
             "data_nascimento": input("Data de nascimento: "),
             "cep": input("CEP: "),
-            "num_casa": int(input("Número casa: ")),
+            "num_casa": input("Número casa: "),
         }
 
         list_client.append(client)
         print(list_client)
-
-        return_menu = input("Deseja retornar ao menu principal [sim/nao]? ")
-
-        if return_menu == 'sim':
-            control = True
-        else:
-            print("Obrigada por utilizar nosso programa.")
-            control = False
+        validador = return_menu_principal()
 
     elif menu == '2':
         pass
