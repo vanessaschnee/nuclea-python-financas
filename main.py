@@ -1,3 +1,4 @@
+from utils.data import valida_data_nascimento
 from utils.funcoes_auxiliares import *
 from utils.valida_cpf import valida_cpf
 from utils.valida_rg import valida_rg
@@ -19,16 +20,16 @@ while control:
         print("informe os dados do cliente:")
         client = {
             "nome": format_text(input("Nome: ")),
-            "cpf": valida_cpf(input("CPF: ").replace(".","").replace("-","")),
-            "rg": valida_rg(input("RG: ").replace(".","").replace("-","")),
-            "data_nascimento": input("Data de nascimento: "),
+            "cpf": valida_cpf(),
+            "rg": valida_rg(),
+            "data_nascimento": valida_data_nascimento(),
             "cep": input("CEP: "),
             "num_casa": input("Número casa: "),
         }
 
         list_client.append(client)
         print(list_client)
-        validador = return_menu_principal()
+        control = return_menu_principal()
 
     elif menu == '2':
         pass
