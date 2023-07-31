@@ -2,6 +2,8 @@ from utils.data import valida_data_nascimento
 from utils.funcoes_auxiliares import *
 from utils.valida_cpf import valida_cpf
 from utils.valida_rg import valida_rg
+from utils.valida_endereco import valida_cep
+
 
 control = True
 list_client = []
@@ -23,7 +25,7 @@ while control:
             "cpf": valida_cpf(),
             "rg": valida_rg(),
             "data_nascimento": valida_data_nascimento(),
-            "cep": input("CEP: "),
+            "endereco": valida_cep(),
             "num_casa": input("Número casa: "),
         }
 

@@ -13,8 +13,6 @@ def valida_data_nascimento():
                 print("Data inválida, digite novamente.")
         except ValueError as e:
             print(f'Erro: {e}, digite novamente.')
-        finally:
-            print("Fluxo de validação encerrado.")
 
 if __name__ == "__main__":
     valida_data_nascimento()
