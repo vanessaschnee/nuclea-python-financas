@@ -5,42 +5,43 @@ from utils.valida_rg import valida_rg
 from utils.valida_endereco import valida_cep
 
 
-control = True
 list_client = []
 
-while control:
-    menu = int(input("Seja bem vindo(a) ao sistema de gerenciamento de carteira de ações da Nuclea. "
-                     "Selecione uma as opções abaixo: \n "
-                     "1 - Cadastrar Cliente\n "
-                     "2 - Cadastrar ação\n "
-                     "3 = Realizar análise da carteira\n "
-                     "4 - Imprimir relatório da carteira\n "
-                     "5 - Sair\n "
-                     "Digite a opção desejada: "))
+def main():
+    control = True
+    while control:
+        menu = int(input("Seja bem vindo(a) ao sistema de gerenciamento de carteira de ações da Nuclea. "
+                         "Selecione uma as opções abaixo: \n "
+                         "1 - Cadastrar Cliente\n "
+                         "2 - Cadastrar ação\n "
+                         "3 = Realizar análise da carteira\n "
+                         "4 - Imprimir relatório da carteira\n "
+                         "5 - Sair\n "
+                         "Digite a opção desejada: "))
 
-    if menu == 1:
-        print("informe os dados do cliente:")
-        client = {
-            "nome": format_text(input("Nome: ")),
-            "cpf": valida_cpf(),
-            "rg": valida_rg(),
-            "data_nascimento": valida_data_nascimento(),
-            "endereco": valida_cep(),
-            "num_casa": input("Número casa: "),
-        }
+        if menu == 1:
+            print("informe os dados do cliente:")
+            client = {
+                "nome": format_text(input("Nome: ")),
+                "cpf": valida_cpf(),
+                "rg": valida_rg(),
+                "data_nascimento": valida_data_nascimento(),
+                "endereco": valida_cep(),
+                "num_casa": input("Número casa: "),
+            }
 
-        list_client.append(client)
-        print(list_client)
-        control = return_menu_principal()
+            list_client.append(client)
+            print(list_client)
+            control = return_menu_principal()
 
-    elif menu == '2':
-        pass
-    elif menu == '3':
-        pass
-    elif menu == '4':
-        pass
-    elif menu == '5':
-        print("Obrigada por utilizar nosso programa.")
-        control = False
-    else:
-        print("Opção inválida, tente novamente.")
+        elif menu == '2':
+            pass
+        elif menu == '3':
+            pass
+        elif menu == '4':
+            pass
+        elif menu == '5':
+            print("Obrigada por utilizar nosso programa.")
+            control = False
+        else:
+            print("Opção inválida, tente novamente.")
