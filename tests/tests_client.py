@@ -11,11 +11,11 @@ class TestStringMethods(unittest.TestCase):
         return fake.name()
 
     def test_cliente(self):
+
         nome = self.gerar_nome_fake()
         cpf = gera_cpf()
 
-        #girar dinamicamente depois o rg, e etc.
-        inputs = ["1", nome, cpf, "271864050","23/12/1993","20520050","79","não"]
+        inputs = [1, 1, nome, cpf, "271864050", "23/12/1993", "20520050", "79", "não"]
 
         with patch("builtins.input", side_effect=inputs):
             main()
@@ -31,4 +31,3 @@ class TestStringMethods(unittest.TestCase):
         }
 
         self.assertIn(cliente_esperado, list_client)
-

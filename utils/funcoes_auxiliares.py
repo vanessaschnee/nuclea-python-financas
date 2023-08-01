@@ -1,12 +1,12 @@
 def return_menu_principal():
-    return_menu_principal = input("Deseja retornar ao menu principal [sim/não]? ")
-    if return_menu_principal == 'sim':
-        return_menu = True
+    resposta = input("Deseja retornar ao menu principal [sim/não]? ")
+    if resposta == 'sim':
+        return True
     else:
         print("Obrigada por utilizar nosso programa.")
-        return_menu = False
-    return return_menu
+        return False
 
-def format_text(texto):
-    nome_formatado = texto.title()
+def format_text():
+    nome = input('Nome: ')
+    nome_formatado = nome.title()
     return nome_formatado
