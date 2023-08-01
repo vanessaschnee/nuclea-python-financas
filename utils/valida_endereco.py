@@ -18,6 +18,10 @@ def busca_cep(cep):
                     "Estado": data["uf"]
                 }
 
+                for chave, valor in endereco.items():
+                    if valor in chave == "":
+                        endereco.remove(chave)
+
                 return(endereco)
 
 def valida_cep():
