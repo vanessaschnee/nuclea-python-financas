@@ -1,3 +1,4 @@
+from repository.banco_de_dados import insert_cliente_banco_de_dados
 from utils.data import valida_data_nascimento
 from utils.funcoes_auxiliares import return_menu_principal, format_text
 from utils.valida_cpf import valida_cpf
@@ -23,9 +24,9 @@ def main():
         if menu == 1:
             opcao_menu_um = int(input("Selecione uma as opções abaixo: \n "
                                       "1 - Cadastrar Cliente\n "
-                                      "2 - Alterar Cliente\n "
+                                      "2 - Consultar Cliente\n "
                                       "3 - Atualizar Cliente\n "
-                                      "4 - Remover Cliente\n "
+                                      "4 - Deletar Cliente\n "
                                       "5 - Voltar ao menu anterior\n "
                                       "Digite a opção desejada: "))
 
@@ -40,6 +41,7 @@ def main():
                 }
 
                 list_client.append(client)
+                insert_cliente_banco_de_dados(list_client)
                 print(list_client)
 
         elif menu == 2:
@@ -71,5 +73,5 @@ def main():
         else:
             control = False
 
-if "__name__" == "__main__":
+if __name__ == "__main__":
     main()
