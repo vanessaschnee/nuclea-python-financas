@@ -1,5 +1,5 @@
 def return_menu_principal():
-    resposta = input("Deseja retornar ao menu principal [sim/não]? ")
+    resposta = input("\nDeseja retornar ao menu principal [sim/não]? ")
     if resposta == 'sim':
         return True
     else:

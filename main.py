@@ -1,4 +1,4 @@
-from repository.banco_de_dados import insert_cliente_banco_de_dados
+from models.cliente import Cliente
 from utils.data import valida_data_nascimento
 from utils.funcoes_auxiliares import return_menu_principal, format_text
 from utils.valida_cpf import valida_cpf
@@ -8,11 +8,10 @@ from utils.valida_endereco import valida_cep
 list_client = []
 cadastro_acao = []
 
-
 def main():
     control = True
     while control:
-        menu = int(input("Seja bem vindo(a) ao sistema de gerenciamento de carteira de ações da Nuclea. "
+        menu = int(input("\nSeja bem vindo(a) ao sistema de gerenciamento de carteira de ações da Nuclea. "
                          "Selecione uma as opções abaixo: \n "
                          "1 - Acessar Menu Clientes\n "
                          "2 - Cadastrar ação\n "
@@ -22,27 +21,53 @@ def main():
                          "Digite a opção desejada: "))
 
         if menu == 1:
-            opcao_menu_um = int(input("Selecione uma as opções abaixo: \n "
-                                      "1 - Cadastrar Cliente\n "
-                                      "2 - Consultar Cliente\n "
-                                      "3 - Atualizar Cliente\n "
-                                      "4 - Deletar Cliente\n "
-                                      "5 - Voltar ao menu anterior\n "
-                                      "Digite a opção desejada: "))
+            control_menu_cliente = True
+            while control_menu_cliente:
+                opcao_menu_cliente = int(input("\nSelecione uma as opções abaixo: \n "
+                                          "1 - Cadastrar Cliente\n "
+                                          "2 - Consultar Cliente\n "
+                                          "3 - Atualizar Cliente\n "
+                                          "4 - Deletar Cliente\n "
+                                          "5 - Voltar ao menu anterior\n "
+                                          "Digite a opção desejada: "))
 
-            if opcao_menu_um == 1:
-                client = {
-                    "nome": format_text(),
-                    "cpf": valida_cpf(),
-                    "rg": valida_rg(),
-                    "data_nascimento": valida_data_nascimento(),
-                    "endereco": valida_cep(),
-                    "num_casa": input("Número casa: "),
-                }
+                if opcao_menu_cliente == 1:
+                    client = {
+                        "nome": format_text(),
+                        "cpf": valida_cpf(),
+                        "rg": valida_rg(),
+                        "data_nascimento": valida_data_nascimento(),
+                        "endereco": valida_cep(),
+                        "num_casa": input("Número casa: "),
+                    }
 
-                list_client.append(client)
-                insert_cliente_banco_de_dados(list_client)
-                print(list_client)
+                    list_client.append(client)
+                    conexao = Cliente()
+                    conexao.cadastrar_cliente(list_client)
+                    print(list_client)
+
+                elif opcao_menu_cliente == 2:
+                    cpf = input("\nDigite o CPF do cliente para consulta:")
+
+                    conexao = Cliente()
+                    conexao.consultar_cliente(cpf)
+
+
+                elif opcao_menu_cliente == 3:
+                    cpf = input("\nDigite o CPF do cliente que deseja alterar:")
+                    conexao = Cliente()
+                    conexao.alterar_cliente(cpf)
+
+                elif opcao_menu_cliente == 4:
+                    cpf = input("\nDigite o CPF do cliente que deseja excluir da base de dados:")
+                    conexao = Cliente()
+                    conexao.deletar_cliente(cpf)
+
+                elif opcao_menu_cliente == 5:
+                    control_menu_cliente = False
+
+                else:
+                    print("Opção inválida, digite novamente.")
 
         elif menu == 2:
             print("Informe os dados da ação: ")
