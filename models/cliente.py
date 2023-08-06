@@ -1,10 +1,15 @@
 import psycopg2
 import os
 
+from repository.BancoDeDados import BancoDeDados
 
-class Cliente:
+
+class Cliente (BancoDeDados):
 
     def __init__(self):
+
+        super().__init__()
+
         self.id = None
         self.cpf = None
         self.nome = None
@@ -16,24 +21,12 @@ class Cliente:
         self.bairro = None
         self.cidade = None
         self.estado = None
-        self.conexao = psycopg2.connect(**self.retorna_parametros_conexao_banco_de_dados())
-        self.cursor = self.conexao.cursor()
 
     def __del__(self):
-        if self.cursor:
-            self.cursor.close()
-        if self.conexao:
-            self.conexao.close()
+        super().__del__()
 
-    def retorna_parametros_conexao_banco_de_dados(self):
-        parametros_conexao = {
-            "user": os.getenv("user"),
-            "password": os.getenv("password"),
-            "host": os.getenv("host"),
-            "port": os.getenv("port"),
-            "database": os.getenv("database"),
-        }
-
+    def retorna_parametros_conexao_banco_de_dados_em_cliente(self):
+        parametros_conexao = super().retorna_parametros_conexao_banco_de_dados()
         return parametros_conexao
 
     def cadastrar_cliente(self, cliente):
@@ -80,6 +73,7 @@ class Cliente:
 
             if cliente_encontrado:
                 dict_cliente_encontrado = {
+                    "Id": cliente_encontrado[0],
                     "Nome": cliente_encontrado[1],
                     "CPF": cliente_encontrado[2],
                     "RG": cliente_encontrado[3],
@@ -95,11 +89,11 @@ class Cliente:
                 return dict_cliente_encontrado
 
             else:
-                print("Cliente não encontrado.")
+                print("\nCliente não encontrado.\n")
 
         except psycopg2.Error as e:
             self.conexao.rollback()
-            print("Erro ao encontrar cliente:", e)
+            print("\nErro ao encontrar cliente:", e)
 
     def alterar_cliente(self, cpf):
         cliente_encontrado = self.consultar_cliente(cpf)
@@ -185,7 +179,8 @@ class Cliente:
 
 
 if __name__ == "__main__":
-    cpf = "873.797.470-02"
+    cpf = "987.654.321-09"
     conexao = Cliente()
-    resultado_consulta = conexao.deletar_cliente(cpf)
+    resultado_consulta = conexao.consultar_cliente(cpf)
+    print(resultado_consulta)
 

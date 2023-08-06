@@ -1,4 +1,5 @@
 from models.cliente import Cliente
+from models.ordem import Ordem
 from utils.data import valida_data_nascimento
 from utils.funcoes_auxiliares import return_menu_principal, format_text
 from utils.valida_cpf import valida_cpf
@@ -22,6 +23,7 @@ def main():
 
         if menu == 1:
             control_menu_cliente = True
+
             while control_menu_cliente:
                 opcao_menu_cliente = int(input("\nSelecione uma as opções abaixo: \n "
                                           "1 - Cadastrar Cliente\n "
@@ -52,7 +54,6 @@ def main():
                     conexao = Cliente()
                     conexao.consultar_cliente(cpf)
 
-
                 elif opcao_menu_cliente == 3:
                     cpf = input("\nDigite o CPF do cliente que deseja alterar:")
                     conexao = Cliente()
@@ -69,18 +70,45 @@ def main():
                 else:
                     print("Opção inválida, digite novamente.")
 
-        elif menu == 2:
-            print("Informe os dados da ação: ")
-            acao = {
-                "nome": input("Nome: "),
-                "ticket": input("Ticket: "),
-                "valor_compra": float(input("Valor da compra por ação: ")),
-                "quantidade_compra": int(input("Quantidade de ações: ")),
-                "data_compra": input("Data da compra: ")
-            }
 
-            cadastro_acao.append(acao)
-            print(cadastro_acao)
+        elif menu == 2:
+            control_acao = True
+            while control_acao:
+                cpf_acao_cliente = input("Digite o CPF do cliente que irá ter ações adicionadas na carteira: ")
+
+                conexao = Cliente()
+                consulta = conexao.consultar_cliente(cpf_acao_cliente)
+                print(f'\nDados do dono(a) da carteira- \n'
+                      f'Nome: {consulta["Nome"]}\n'
+                      f'CPF: {consulta["CPF"]}')
+
+                if consulta:
+                    resposta_seguir = input("\nDeseja seguir? [sim/nao] \n").lower()
+
+                    if resposta_seguir == 'sim':
+                        print("\nInforme os dados da ação-")
+
+                        acao = {
+                            "nome": input("Nome: "),
+                            "ticket": input("Ticket: "),
+                            "valor_compra": float(input("Valor da compra por ação: ").replace(",",".")),
+                            "quantidade_compra": int(input("Quantidade de ações: ")),
+                            "data_compra": input("Data da compra: ")
+                        }
+
+                        cadastro_acao.append(acao)
+                        conexao = Ordem()
+                        conexao.cadastrar_acao(cadastro_acao,consulta)
+                        print(f"\nReveja o que foi inserido na conta de {consulta['Nome']}:\n "
+                              f"{cadastro_acao} \n")
+
+                        control_acao = False
+
+                    else:
+                        control_acao = False
+                else:
+                    pass
+
 
         elif menu == 3:
             pass
