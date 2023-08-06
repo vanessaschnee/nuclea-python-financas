@@ -1,6 +1,7 @@
 import psycopg2
 import os
 
+from carteira import analise_carteira
 from repository.BancoDeDados import BancoDeDados
 
 
@@ -27,7 +28,7 @@ class Ordem (BancoDeDados):
 
     def cadastrar_acao(self, acao, cliente_id):
         self.nome = acao[0]["nome"]
-        self.ticket = acao[0]["ticket"]
+        self.ticket = (acao[0]["ticket"] + '.SA').replace(" ","")
         self.valor_compra = acao[0]["valor_compra"]
         self.quantidade_compra = acao[0]["quantidade_compra"]
         self.data_compra = acao[0]["data_compra"]
@@ -51,3 +52,29 @@ class Ordem (BancoDeDados):
         except psycopg2.Error as e:
             self.conexao.rollback()
             print("Erro ao cadastrar ordem:", e)
+
+    def consultar_acoes_carteira(self, cliente_id):
+        self.cliente_id = cliente_id
+
+        select_query = """
+                        SELECT ticket 
+                        FROM public.ordem 
+                        WHERE cliente_id = %s;
+                """
+
+        try:
+            self.cursor.execute(select_query, cliente_id)
+            carteira_encontrada = self.cursor.fetchall()
+
+            if carteira_encontrada:
+                analise_carteira(carteira_encontrada)
+            else:
+                print("Carteira não encontrada.")
+
+        except psycopg2.Error as e:
+            self.conexao.rollback()
+            print("\nErro ao encontrar carteira:", e)
+
+
+
+

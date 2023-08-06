@@ -15,9 +15,3 @@ def obter_dados_acao(ticket, nome_arquivo):
 
     except Exception as e:
         print("Erro ao obter dados da ação. Verifique se o nome está correto.")
-
-
-
-ticket =input("Digite a ação: ")
-nome_arquivo = input("Digite o nome do arquivo: ")
-obter_dados_acao(ticket, nome_arquivo)

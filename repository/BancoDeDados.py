@@ -21,5 +21,4 @@ class BancoDeDados:
             "port": os.getenv("port"),
             "database": os.getenv("database"),
         }
-
         return parametros_conexao
