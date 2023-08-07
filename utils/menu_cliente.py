@@ -1,14 +1,15 @@
 from models.cliente import Cliente
 from utils.data import valida_data_nascimento
-from utils.funcoes_auxiliares import format_text
+from utils.funcoes_auxiliares import format_text, return_menu_principal
 from utils.valida_cpf import valida_cpf
 from utils.valida_endereco import valida_cep
 from utils.valida_rg import valida_rg
 
 list_client = []
+
+
 def menu_cliente():
     control_menu_cliente = True
-
     while control_menu_cliente:
         opcao_menu_cliente = int(input("\nSelecione uma as opções abaixo: \n "
                                        "1 - Cadastrar Cliente\n "
@@ -58,10 +59,15 @@ def menu_cliente():
         elif opcao_menu_cliente == 4:
             cpf = input("\nDigite o CPF do cliente que deseja excluir da base de dados:")
             conexao = Cliente()
-            conexao.deletar_cliente(cpf)
+            resultado = conexao.deletar_cliente(cpf)
+            if resultado == False:
+                pass
 
         elif opcao_menu_cliente == 5:
             control_menu_cliente = False
 
         else:
             print("Opção inválida, digite novamente.")
+
+if __name__ == "__main__":
+    menu_cliente()

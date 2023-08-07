@@ -162,7 +162,7 @@ class Cliente (BancoDeDados):
         cliente_encontrado = self.consultar_cliente(cpf)
 
         if not cliente_encontrado:
-            return
+            return False
 
         delete_query = """
             DELETE FROM public.cliente WHERE cpf = %s;
