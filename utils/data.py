@@ -14,5 +14,20 @@ def valida_data_nascimento():
         except ValueError as e:
             print(f'Erro: {e}, digite novamente.')
 
+def valida_data():
+    while True:
+        data = input("Data de compra: ")
+
+        try:
+            data_convertida = datetime.strptime(data, "%d/%m/%Y").date()
+            data_atual = datetime.now().date()
+
+            if data_convertida <= data_atual:
+                return data_convertida.strftime("%d/%m/%Y")
+            else:
+                print("Data inválida, digite novamente.")
+        except ValueError as e:
+            print(f'Erro: {e}, digite novamente.')
+
 if __name__ == "__main__":
-    valida_data_nascimento()
+    valida_data()

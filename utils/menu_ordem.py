@@ -1,5 +1,6 @@
 from models.cliente import Cliente
 from models.ordem import Ordem
+from utils.data import valida_data
 
 cadastro_acao = []
 def menu_ordem():
@@ -24,7 +25,7 @@ def menu_ordem():
                     "ticket": input("Ticket: "),
                     "valor_compra": float(input("Valor da compra por ação: ").replace(",", ".")),
                     "quantidade_compra": int(input("Quantidade de ações: ")),
-                    "data_compra": input("Data da compra: ")
+                    "data_compra": valida_data()
                 }
 
                 cadastro_acao.append(acao)

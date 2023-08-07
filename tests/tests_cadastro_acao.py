@@ -1,10 +1,12 @@
 import unittest
 from unittest.mock import patch
-from main import main, cadastro_acao
+from main import main
+from utils.menu_ordem import cadastro_acao
+
 
 class TestStringMethods(unittest.TestCase):
     def test_cadastro_acao(self):
-        inputs = [2, "Itausa", "ITSA4", 9.80, 10, '01/08/2023', "não"]
+        inputs = [2, "987.654.321-09", "sim", "Itausa", "ITSA4", 9.80, 10, '01/08/2023', "não"]
 
         with patch("builtins.input", side_effect=inputs):
             main()
