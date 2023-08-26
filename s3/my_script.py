@@ -32,6 +32,6 @@ def upload_file(file_name, bucket, object_name=None):
 upload_success = upload_file(file_name, bucket)
 
 if upload_success:
-    print("Arquivo enviado com sucesso para o bucket!")
+    print("Arquivo enviado com sucesso!")
 else:
-    print("Houve um erro ao enviar o arquivo para o bucket.")
+    print("Houve um erro ao enviar o arquivo.")
