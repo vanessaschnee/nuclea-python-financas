@@ -13,7 +13,7 @@ def main():
                          "1 - Acessar Menu Clientes\n "
                          "2 - Cadastrar ação\n "
                          "3 - Realizar análise da carteira\n "
-                         "4 - Imprimir relatório sobre ação específica\n "
+                         "4 - Imprimir relatório sobre ação específica e enviá-lo para o S3\n "
                          "5 - Sair\n "
                          "Digite a opção desejada: "))
 
