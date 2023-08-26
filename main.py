@@ -2,7 +2,7 @@ from utils.funcoes_auxiliares import return_menu_principal
 from utils.menu_analise_carteira import menu_analise_carteira
 from utils.menu_cliente import menu_cliente
 from utils.menu_ordem import menu_ordem
-from utils.menu_relatorio_carteira import menu_relorio_carteira
+from utils.menu_relatorio_carteira import menu_relatorio_carteira
 
 
 def main():
@@ -27,7 +27,7 @@ def main():
             menu_analise_carteira()
 
         elif menu == 4:
-            menu_relorio_carteira()
+            menu_relatorio_carteira()
 
         elif menu == 5:
             print("Obrigada por utilizar nosso programa.")
