@@ -3,8 +3,10 @@ import boto3
 from botocore.exceptions import ClientError
 import os
 
+file_name = '../relatorio.txt'
+bucket = 'trabalho-finaldemodulo-ada-aws'
 
-def upload_file('relatorio.txt', bucket, object_name=None):
+def upload_file(file_name, bucket, object_name=None):
     """Upload a file to an S3 bucket
 
     :param file_name: File to upload
@@ -25,3 +27,11 @@ def upload_file('relatorio.txt', bucket, object_name=None):
         logging.error(e)
         return False
     return True
+
+# Chamando a função para fazer o upload do arquivo
+upload_success = upload_file(file_name, bucket)
+
+if upload_success:
+    print("Arquivo enviado com sucesso para o bucket!")
+else:
+    print("Houve um erro ao enviar o arquivo para o bucket.")
