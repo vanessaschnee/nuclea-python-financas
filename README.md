@@ -19,10 +19,10 @@
     3) Realizar análise da carteira:
 					a) A opção de análise irá exibir ao usuário um gráfico utilizando a biblioteca Matplotlib contendo as informações das ações cadastradas no banco de dados de determinado usuário. Essa determinação deve ocorrer através da solicitação do CPF do Cliente.
 				
-    4) Imprimir relatório da carteira ou Consultar relatório da ação:
-					a) Essa opção permite  duas possibilidades:
-						i) Executar o arquivo(relatorio) para imprimir relatório pegando as ações do cliente que estão armazenadas dentro do banco de dados. Dessa forma será necessário solicitar o CPF do cliente e consultar as ações atreladas a ele e então criar um arquivo informando o relatório de cada ação. O nome desse arquivo deve ser solicitado ao cliente e deve ter a extensão txt.
-						ii) Oferecer ao cliente uma opção para consultar dados de qualquer ação, para que ele possa se informar sobre o seu status atual.
+    4) Consultar relatório de ação específica e enviá-la para o S3:
+					a) Essa opção permite:
+						i) Oferecer ao cliente uma opção para consultar dados de qualquer ação, para que ele possa se informar sobre o seu status atual.
+      						i) Enviar o relatório diretamente para um bucket no S3 (serviço oferecido pela AWS)
 				
     5) Sair:
 					a) Opção sair irá encerrar a aplicação.
