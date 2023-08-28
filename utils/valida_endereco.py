@@ -1,5 +1,4 @@
 import requests
-import json
 
 def busca_cep(cep):
         url = f'http://viacep.com.br/ws/{cep}/json/'

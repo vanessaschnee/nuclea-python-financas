@@ -1,4 +1,4 @@
-from relatorio import obter_dados_acao
+from utils.relatorio import obter_dados_acao
 import datetime
 
 def menu_relatorio_carteira():

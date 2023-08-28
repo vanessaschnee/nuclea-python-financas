@@ -1,6 +1,4 @@
 import psycopg2
-import os
-
 from repository.BancoDeDados import BancoDeDados
 
 

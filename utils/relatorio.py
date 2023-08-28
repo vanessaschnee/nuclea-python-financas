@@ -1,7 +1,6 @@
 import yfinance as yf
 from s3.upload_success import upload_success
 
-
 def obter_dados_acao(ticket, nome_arquivo):
 
     try:

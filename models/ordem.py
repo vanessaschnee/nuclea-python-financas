@@ -1,8 +1,7 @@
 import psycopg2
-import os
 
-from carteira import analise_carteira
 from repository.BancoDeDados import BancoDeDados
+from utils.carteira import analise_carteira
 
 
 class Ordem (BancoDeDados):
